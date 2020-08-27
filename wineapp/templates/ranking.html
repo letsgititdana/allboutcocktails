@@ -1,0 +1,134 @@
+{% load static %}
+
+<html>
+	<head>
+		<title>All aBout Cocktails</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link type="text/css" rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+	</head>
+	<body>
+		<script src="https://code.jquery.com/jquery-3.5.1.js"
+				integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+				crossorigin="anonymous">
+
+		</script>
+		<script>
+			$.ajax({
+			  method: "GET",
+			  url: "https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg/preview (100x100 pixels)",
+			  data: {{final_list}}
+			})
+			  .done(function( msg ) {
+				alert( "Data Saved: " + msg );
+			  });
+		</script>
+
+		<!-- Header -->
+			<header id="header">
+				<div class="logo"><a href="../index"> A<span>ll '</span>B<span>out</span> C<span>ocktails</span>  </a></div>
+				<a href="#menu">Menu</a>
+			</header>
+
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="../index">Home</a></li>
+					<li><a href="../about">About</a></li>
+					<li><a href="../ranking"> RANKING </a></li>
+					<li><a href="../recommendation"> RECOMMENDATION </a></li>
+					<li><a href="../ingredient"> INGREDIENT </a></li>
+					<li><a href="../elements">Elements</a></li>
+				</ul>
+			</nav>
+
+		<!-- One -->
+			<section id="One" class="wrapper style3">
+				<div class="inner">
+					<header class="align-center">
+						<p>The 50 Most Popular Cocktails in the World in 2020</p>
+						<h2>RANKING</h2>
+					</header>
+				</div>
+			</section>
+
+		<!-- Two -->
+			<section id="two" class="wrapper style2">
+				<div class="inner">
+					<div class="box">
+						<div class="content">
+							<div class="12u$">
+								<div class="select-wrapper">
+									<select name="category" id="category">
+										<option value="">- 술 베이스 -</option>
+										<option value="1">앱솔루트 시트론</option>
+										<option value="1">라이트 럼</option>
+										<option value="1">샴페인</option>
+									</select>
+								</div>
+								<div class="select-wrapper">
+									<select name="category_Per" id="category_Per">
+										<option value="">- 알콜 여부 -</option>
+										<option value="1">알콜</option>
+										<option value="1">논알콜</option>
+									</select>
+								</div>
+								<div class="select-wrapper">
+									<select name="category_Per2" id="category_Per2">
+										<option value="">- 카테고리 -</option>
+										<option value="1">?</option>
+										<option value="1">??</option>
+									</select>
+								</div>
+							</div>
+								<div class="select-wrapper">
+									<select name="COCKRANK" id="COCKRANK">
+										<option value="">칵테일 인기순위 선택</option>
+										<option value="1위">1위</option><option value="2위">2위</option><option value="3위">3위</option><option value="4위">4위</option><option value="5위">5위</option><option value="6위">6위</option><option value="7위">7위</option><option value="8위">8위</option><option value="9위">9위</option><option value="10위">10위</option><option value="11위">11위</option><option value="12위">12위</option><option value="13위">13위</option><option value="14위">14위</option><option value="15위">15위</option><option value="16위">16위</option><option value="17위">17위</option><option value="18위">18위</option><option value="19위">19위</option><option value="20위">20위</option><option value="21위">21위</option><option value="22위">22위</option><option value="23위">23위</option><option value="24위">24위</option><option value="25위">25위</option><option value="26위">26위</option><option value="27위">27위</option><option value="28위">28위</option><option value="29위">29위</option><option value="30위">30위</option><option value="31위">31위</option><option value="32위">32위</option><option value="33위">33위</option><option value="34위">34위</option><option value="35위">35위</option><option value="36위">36위</option><option value="37위">37위</option><option value="38위">38위</option><option value="39위">39위</option><option value="40위">40위</option><option value="41위">41위</option><option value="42위">42위</option><option value="43위">43위</option><option value="44위">44위</option><option value="45위">45위</option><option value="46위">46위</option><option value="47위">47위</option><option value="48위">48위</option><option value="49위">49위</option><option value="50위">50위</option>							</select>
+								</div>
+							<div class="col-sm-4 firstwindow_ani">
+								<input type="text" name="search_text" id="search_text" class="form-control" placeholder="이름 검색" value="" />
+							</div>
+							<hr>
+							<div class="col-sm-12 align-center">
+								<button class="btn btn-primary btncss">검색</button>
+							</div>
+						</form>
+							</div>
+							<hr>
+							<header class="align-center">
+								<p>maecenas sapien feugiat ex purus</p>
+								<h2>Lorem ipsum dolor</h2>
+
+							</header>
+						</div>
+				 </div>
+
+			</section>
+			<p>{{final_list}}</p>
+
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="container">
+					<ul class="icons">
+						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+					</ul>
+				</div>
+				<div class="copyright">
+					&copy; Untitled. All rights reserved.
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script type="text/javascript" src="{% static 'assets/js/jquery.min.js' %}"></script>
+			<script type="text/javascript" src="{% static 'assets/js/jquery.scrollex.min.js' %}"></script>
+			<script type="text/javascript" src="{% static 'assets/js/skel.min.js' %}"></script>
+			<script type="text/javascript" src="{% static 'assets/js/util.js' %}"></script>
+			<script type="text/javascript" src="{% static 'assets/js/main.js' %}"></script>
+
+	</body>
+</html>
