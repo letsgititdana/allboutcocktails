@@ -20,7 +20,27 @@ def elements(request):
     return render(request,'elements.html')
 
 def ranking(request):
-    return render(request,'ranking.html')
+    cocktail_list = ['blood_and_sand','irish_coffee','brandy_alexander','old_cuban',
+                    'bamboo','sidecar','vodka_martini','ramos_gin_fizz','caipirinha',
+                    'gin_gin_mule','vesper','cosmopolitan','white_lady','rum_old_fashioned',
+                    'paloma','tom_collins','vieux_carre','pornstar_martini','the_southside',
+                    'pina_colada','gin_fizz','last_word','pisco_sour',"bee's_knees",
+                    'bramble','americano','mai_tai','amaretto_sour','sazerac','aviation',
+                    "dark_'n'_stormy",'penicillin','french_75','clover_club','boulevardier',
+                    'bloody_mary',"tommy's_margarita",'gimlet','moscow_mule','aperol_spritz',
+                    'mojito','manhattan','margarita','espresso_martini','whiskey_sour',
+                    'dry_martini','daiquiri','negroni','old_fashioned']
+    final_list = []
+    for i in cocktail_list:
+        with urllib.request.urlopen("https://www.thecocktaildb.com/api/json/v1/1/search.php?s="+i) as url:
+            data = json.loads(url.read().decode())
+            if data.get('drinks') is None:
+                continue
+            else:
+                final_list.append(data.get('drinks')[0])
+    print(final_list)
+
+    return render(request, 'ranking.html', {'final_list':final_list})
 
 def recommendation(request):
     return render(request,'recommendation.html')
