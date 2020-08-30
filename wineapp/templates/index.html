@@ -105,15 +105,15 @@
 						<div>
 							<div class="box">
 								<div class="image fit">
-									<img src="{% static 'images/pic03.jpg' %}" alt="" />
+									<img src=" {{cocktailofdayimage}} " alt="" />
 								</div>
 								<div class="content">
 									<header class="align-center">
-										<p>mattis elementum sapien</p>
+										<p> Refresh the page to get new one! </p>
 										<h2> Cocktail of the Day </h2>
 									</header>
 									<div class="todayCocktail"> </div>
-									<div id="cockName"> Name: </div>
+									<div id="cockName"> Cocktail Name: {{ cocktailofday }} </div> <br> <br>
 									<footer class="align-center">
 										<a href="#" class="button alt">Learn More</a>
 									</footer>

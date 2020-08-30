@@ -1,9 +1,16 @@
+import urllib
+import certifi
+import ssl
+
 from django.shortcuts import render, redirect
 from django.template.context import RequestContext
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+import json
+from django.template.loader import render_to_string
+
 
 from .models import *
 from .forms import *
@@ -11,7 +18,16 @@ from .forms import *
 # Create your views here.
 
 def index(request):
-    return render(request,'index.html')
+    with urllib.request.urlopen('https://www.thecocktaildb.com/api/json/v1/1/random.php', context=ssl.create_default_context(cafile=certifi.where())) as response:
+        data = json.loads(response.read().decode())
+        cocktailname = data.get('drinks')[0].get('strDrink')
+        cocktailpic = data.get('drinks')[0].get('strDrinkThumb')
+
+    contents = {}
+    contents['cocktailofday'] = cocktailname
+    contents['cocktailofdayimage'] = cocktailpic
+
+    return render(request,'index.html', contents)
 
 def generic(request):
     return render(request,'generic.html')
@@ -20,27 +36,8 @@ def elements(request):
     return render(request,'elements.html')
 
 def ranking(request):
-    cocktail_list = ['blood_and_sand','irish_coffee','brandy_alexander','old_cuban',
-                    'bamboo','sidecar','vodka_martini','ramos_gin_fizz','caipirinha',
-                    'gin_gin_mule','vesper','cosmopolitan','white_lady','rum_old_fashioned',
-                    'paloma','tom_collins','vieux_carre','pornstar_martini','the_southside',
-                    'pina_colada','gin_fizz','last_word','pisco_sour',"bee's_knees",
-                    'bramble','americano','mai_tai','amaretto_sour','sazerac','aviation',
-                    "dark_'n'_stormy",'penicillin','french_75','clover_club','boulevardier',
-                    'bloody_mary',"tommy's_margarita",'gimlet','moscow_mule','aperol_spritz',
-                    'mojito','manhattan','margarita','espresso_martini','whiskey_sour',
-                    'dry_martini','daiquiri','negroni','old_fashioned']
-    final_list = []
-    for i in cocktail_list:
-        with urllib.request.urlopen("https://www.thecocktaildb.com/api/json/v1/1/search.php?s="+i) as url:
-            data = json.loads(url.read().decode())
-            if data.get('drinks') is None:
-                continue
-            else:
-                final_list.append(data.get('drinks')[0])
-    print(final_list)
 
-    return render(request, 'ranking.html', {'final_list':final_list})
+    return render(request, 'ranking.html')
 
 def recommendation(request):
     return render(request,'recommendation.html')
