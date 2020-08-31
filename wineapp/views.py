@@ -1,18 +1,14 @@
+import csv
 import urllib
 import certifi
 import ssl
-
+import pandas as pd
+from django.contrib.staticfiles.storage import staticfiles_storage
 from django.shortcuts import render, redirect
-from django.template.context import RequestContext
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 import json
-from django.template.loader import render_to_string
-
-
-from .models import *
 from .forms import *
 
 # Create your views here.
@@ -21,11 +17,33 @@ def index(request):
     with urllib.request.urlopen('https://www.thecocktaildb.com/api/json/v1/1/random.php', context=ssl.create_default_context(cafile=certifi.where())) as response:
         data = json.loads(response.read().decode())
         cocktailname = data.get('drinks')[0].get('strDrink')
+        cocktailcategory = data.get('drinks')[0].get('strCategory')
+        cocktailinstruction = data.get('drinks')[0].get('strInstructions')
         cocktailpic = data.get('drinks')[0].get('strDrinkThumb')
+
+        ingredient_list = []
+        for i in range(1, 15):
+            element = data.get('drinks')[0].get('strIngredient'+str(i))
+            if not (element is None):
+                ingredient_list.append(element)
+            else:
+                pass
+
+
+    with open('/Users/Dana/allboutcocktails/wineapp/static/koreancocktails1.csv', mode='r', encoding='ISO-8859-1') as k_cocktail:
+        reader = csv.reader(k_cocktail)
+
+        kcocktail_list = []
+        for i in reader:
+            kcocktail_list.append(i)
 
     contents = {}
     contents['cocktailofday'] = cocktailname
     contents['cocktailofdayimage'] = cocktailpic
+    contents['cocktailofdaycategory'] = cocktailcategory
+    contents['cocktailofdayinstruction'] = cocktailinstruction
+    contents['cocktailofdayingredients'] = ingredient_list
+    contents['monthlycocktail'] = kcocktail_list[8]
 
     return render(request,'index.html', contents)
 
@@ -36,8 +54,14 @@ def elements(request):
     return render(request,'elements.html')
 
 def ranking(request):
+    contents = []
 
-    return render(request, 'ranking.html')
+    with open('/Users/Dana/allboutcocktails/wineapp/static/cocktail2020.csv', mode='r') as cocktail_lists:
+        reader = csv.reader(cocktail_lists)
+        for i in reader:
+            contents.append(i)
+
+    return render(request, 'ranking.html', {'data': contents})
 
 def recommendation(request):
     return render(request,'recommendation.html')

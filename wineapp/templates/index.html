@@ -62,9 +62,9 @@
 					<img src="{% static 'images/wine2.jpg' %}" alt="" />
 					<div class="inner">
 						<header>
-							<p>Lorem ipsum dolor sit amet nullam feugiat</p>
-							<h2> Cocktail of the Day </h2>
-							<button> See Details</button>
+							<p>World's Best-Selling Classic Cocktails 2020 </p>
+							<h2> Cocktail Ranking </h2>
+							<button onclick="location.href='../ranking'" type="button"> See Details </button>
 						</header>
 					</div>
 				</article>
@@ -73,7 +73,8 @@
 					<div class="inner">
 						<header>
 							<p>Sed cursus aliuam veroeros lorem ipsum nullam</p>
-							<h2> Weather Fit Cocktail </h2>
+							<h2> Recommendation </h2>
+							<button onclick="location.href='../recommendation'" type="button"> See Details </button>
 						</header>
 					</div>
 				</article>
@@ -81,8 +82,9 @@
 					<img src="{% static 'images/wine4.jpg' %}"  alt="" />
 					<div class="inner">
 						<header>
-							<p>Adipiscing lorem ipsum feugiat sed phasellus consequat</p>
-							<h2> Mood Fit Cocktail </h2>
+							<p> Select ingredients you already have </p>
+							<h2> Make Your Own </h2>
+							<button onclick="location.href='../ingredient'" type="button"> See Details </button>
 						</header>
 					</div>
 				</article>
@@ -90,8 +92,9 @@
 					<img src="{% static 'images/wine5.jpg' %}"  alt="" />
 					<div class="inner">
 						<header>
-							<p>Ipsum dolor sed magna veroeros lorem ipsum</p>
-							<h2> How about this Cocktail? </h2>
+							<p> Discover the developers </p>
+							<h2> Who Are we? </h2>
+							<button onclick="location.href='../about'" type="button"> See Details </button>
 						</header>
 					</div>
 				</article>
@@ -109,11 +112,15 @@
 								</div>
 								<div class="content">
 									<header class="align-center">
-										<p> Refresh the page to get new one! </p>
-										<h2> Cocktail of the Day </h2>
+										<p> Refresh the page to get a new one </p>
+										<h2> Discover a Cocktail </h2>
 									</header>
-									<div class="todayCocktail"> </div>
-									<div id="cockName"> Cocktail Name: {{ cocktailofday }} </div> <br> <br>
+									<p>
+										Cocktail Name: {{ cocktailofday }} <br>
+										Category: {{ cocktailofdaycategory }} <br>
+										Ingredient: {{ cocktailofdayingredients }} <br> <br>
+										Instruction: {{ cocktailofdayinstruction }} <br> <br>
+									</p>
 									<footer class="align-center">
 										<a href="#" class="button alt">Learn More</a>
 									</footer>
@@ -124,14 +131,14 @@
 						<div>
 							<div class="box">
 								<div class="image fit">
-									<img src="{% static 'images/pic02.jpg' %}"" alt="" />
+									<img src="{% static 'images/cock1.jpg' %}" alt="" />
 								</div>
 								<div class="content">
 									<header class="align-center">
-										<p>maecenas sapien feugiat ex purus</p>
-										<h2> Weather Based </h2>
+										<p> Get the trendiest Korean Cocktail </p>
+										<h2> Monthly K-Cocktail </h2>
 									</header>
-									<p> content2 </p>
+									<p> {{ monthlycocktail }} </p>
 									<footer class="align-center">
 										<a href="#" class="button alt">Learn More</a>
 									</footer>
@@ -158,7 +165,7 @@
 				<div class="inner">
 					<header class="align-center">
 						<p class="special">Nam vel ante sit amet libero scelerisque facilisis eleifend vitae urna</p>
-						<h2>Morbi maximus justo</h2>
+						<h2> Popular Cocktail Ingredients </h2>
 					</header>
 					<div class="gallery">
 						<div>
