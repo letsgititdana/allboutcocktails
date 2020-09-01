@@ -16,10 +16,26 @@ from .forms import *
 def index(request):
     with urllib.request.urlopen('https://www.thecocktaildb.com/api/json/v1/1/random.php', context=ssl.create_default_context(cafile=certifi.where())) as response:
         data = json.loads(response.read().decode())
+        global cocktailname
+        global cocktailcategory
+        global cocktailinstruction
+        global cocktailpic
+        global cocktailid
         cocktailname = data.get('drinks')[0].get('strDrink')
         cocktailcategory = data.get('drinks')[0].get('strCategory')
         cocktailinstruction = data.get('drinks')[0].get('strInstructions')
         cocktailpic = data.get('drinks')[0].get('strDrinkThumb')
+        cocktailid = data.get('drinks')[0].get('idDrink')
+        #mainingredient1 = data.get('drinks')[0].get('strIngredient1')
+        #mainingredient2 = data.get('drinks')[0].get('strIngredient2')
+        # idIngrdeidnt는 604까지 있음 (https://www.thecocktaildb.com/api/json/v1/1/lookup.php?iid=604)
+
+        #ingredient1Link = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?i=' + str(mainingredient1)
+        #ingredient2Link = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?i=' + str(mainingredient2)
+
+        #with urllib.request.urlopen(ingredient1Link, context=ssl.create_default_context(cafile=certifi.where())) as response:
+        #    ingredient1 = json.loads(response.read().decode())
+        #    ingredient1description = ingredient1.get('ingredients')[0].get('strDescription')
 
         ingredient_list = []
         for i in range(1, 15):
@@ -29,10 +45,8 @@ def index(request):
             else:
                 pass
 
-
     with open('/Users/Dana/allboutcocktails/wineapp/static/koreancocktails1.csv', mode='r', encoding='ISO-8859-1') as k_cocktail:
         reader = csv.reader(k_cocktail)
-
         kcocktail_list = []
         for i in reader:
             kcocktail_list.append(i)
@@ -43,9 +57,19 @@ def index(request):
     contents['cocktailofdaycategory'] = cocktailcategory
     contents['cocktailofdayinstruction'] = cocktailinstruction
     contents['cocktailofdayingredients'] = ingredient_list
+    #contents['ingredient1description'] = ingredient1description
     contents['monthlycocktail'] = kcocktail_list[8]
 
     return render(request,'index.html', contents)
+
+def individual(request):
+    individualcontents = {}
+    individualcontents['individualname'] = cocktailname
+    individualcontents['individualimage'] = cocktailpic
+    individualcontents['individualcategory'] = cocktailcategory
+    individualcontents['individualinstruction'] = cocktailinstruction
+
+    return render(request, 'individual.html', individualcontents)
 
 def generic(request):
     return render(request,'generic.html')

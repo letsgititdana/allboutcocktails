@@ -5,7 +5,6 @@
 		<title>All 'Bout Cocktails</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 		<link type="text/css" rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
 	</head>
 	<body class="subpage">
@@ -27,6 +26,7 @@
 					<span><a href="{%url 'login' %}">Login</a> or </span> <br>
 					<span><a href="{%url 'register' %}">Register</a> if you are new </span> <br> <br> <br>
 				{% endif %}
+
 				<ul class="links">
 					<li><a href="../index">Home</a></li>
 					<li><a href="../about">About</a></li>
@@ -42,48 +42,49 @@
 				<div class="inner">
 					<header class="align-center">
 						<p>All 'Bout Cocktails</p>
-						<h2>Sign in / Login</h2>
+						<h2> Individual Page </h2>
 					</header>
 				</div>
 			</section>
+
 
 		<!-- Two -->
 			<section id="two" class="wrapper style2">
 				<div class="inner">
 					<div class="box">
 						<div class="content">
+
+
 							<header class="align-center">
-								<h2>LOGIN</h2>
+								<p> Cocktail Information </p>
+								<h2> {{ individualname }} </h2>
 							</header>
 
-						<!-- FORM -->
-							<form method="POST" action="">
-								{%csrf_token%}
-								<div class="input-group mb-3">
-									Username
-									<input type="text" name="username">
-								</div>
-
-								<div class="input-group mb-2">
-									Password
-									<input type="password" name="password">
-								</div>
 
 
-								<br>
+								<!-- Elements -->
+									<div class="row 200%">
 
-				   				<div class="d-flex justify-content-center mt-3 login_container">
-				 					<input class="btn login_btn" type="submit" value="Login">
-				   				</div>
-							</form>
+										<div class="6u 12u$(medium)">
+											<img src="{{ individualimage }}" style="width:100%;"/>
+										</div>
 
-							{% for message in messages %}
-								<p>{{message}}</p>
-							{% endfor %}
+										<div class="6u$ 12u$(medium)">
+											<h3> {{individualname}} </h3>
+											<dl>
+											<dt style="color:#212224;"> Category </dt>
+												<dd><p> {{individualcategory}} </p></dd>
+											<dt style="color:#212224;"> Ingredients </dt>
+												<dd><p> (What and How much) </p></dd>
+											<dt style="color:#212224;"> Instruction </dt>
+												<dd><p> {{individualinstruction}} </p></dd>
+											</dl>
+											<br>
+											<a href="#" class="button special" style="float: right;"> Save </a>
+										</div>
 
-							<div>
-								<h3> Don't have an account? <a href="{% url 'register' %}"> Sign Up </a> </h3>
-							</div>
+									</div>
+
 
 						</div>
 					</div>

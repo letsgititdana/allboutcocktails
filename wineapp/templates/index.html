@@ -41,7 +41,7 @@
 					<li><a href="../index">Home</a></li>
 					<li><a href="../about">About</a></li>
 					<li><a href="../ranking"> RANKING </a></li>
-					<li><a href="../recommendation"> RECOMMENDATION </a></li>
+<!--					<li><a href="../recommendation"> RECOMMENDATION </a></li>-->
 					<li><a href="../ingredient"> INGREDIENT </a></li>
 					<li><a href="../elements">Elements</a></li>
 				</ul>
@@ -68,6 +68,7 @@
 						</header>
 					</div>
 				</article>
+				<!--
 				<article>
 					<img src="{% static 'images/wine3.jpg' %}"  alt="" />
 					<div class="inner">
@@ -78,6 +79,7 @@
 						</header>
 					</div>
 				</article>
+				-->
 				<article>
 					<img src="{% static 'images/wine4.jpg' %}"  alt="" />
 					<div class="inner">
@@ -115,14 +117,19 @@
 										<p> Refresh the page to get a new one </p>
 										<h2> Discover a Cocktail </h2>
 									</header>
-									<p>
-										Cocktail Name: {{ cocktailofday }} <br>
+
+									<h3> Name: {{ cocktailofday }} </h3> <br>
+									<h4>
 										Category: {{ cocktailofdaycategory }} <br>
-										Ingredient: {{ cocktailofdayingredients }} <br> <br>
-										Instruction: {{ cocktailofdayinstruction }} <br> <br>
-									</p>
+										Ingredients: {% for i in cocktailofdayingredients %}
+														{{ i }},
+													{% endfor %}
+										<br> <br>
+									</h4>
+
 									<footer class="align-center">
-										<a href="#" class="button alt">Learn More</a>
+										<a href="../individual" class="button alt">Learn More</a>
+
 									</footer>
 								</div>
 							</div>
@@ -131,16 +138,18 @@
 						<div>
 							<div class="box">
 								<div class="image fit">
-									<img src="{% static 'images/cock1.jpg' %}" alt="" />
+									<img src="{% static 'images/slide1.jpg' %}" alt="" />
 								</div>
 								<div class="content">
 									<header class="align-center">
-										<p> Get the trendiest Korean Cocktail </p>
-										<h2> Monthly K-Cocktail </h2>
+										<p> Best Selling Classics of 2020 </p>
+										<h2> What's the Best? </h2>
 									</header>
-									<p> {{ monthlycocktail }} </p>
+									<h4> You can’t beat the classics, but every year there’s change within their ranks somewhere. Hamish Smith rounds up this year’s top classics. </h4>
+									<h5> <a href="https://drinksint.com/news/fullstory.php/aid/8648/The_World_92s_Best-Selling_Classic_Cocktails_2020.html" style="float: right;"> Source: Drinks International </a></h5>
+									<br> <br>
 									<footer class="align-center">
-										<a href="#" class="button alt">Learn More</a>
+										<a href="../ranking" class="button alt">Learn More</a>
 									</footer>
 								</div>
 							</div>
@@ -155,7 +164,7 @@
 				<div class="inner">
 					<header class="align-center">
 						<p>Nam vel ante sit amet libero scelerisque facilisis eleifend vitae urna</p>
-						<h2>Morbi maximus justo</h2>
+						<h2> KEEP CALM AND DRINK COCKTAILS </h2>
 					</header>
 				</div>
 			</section>
@@ -170,12 +179,12 @@
 					<div class="gallery">
 						<div>
 							<div class="image fit">
-								<a href="#"><img src="{% static 'images/pic01.jpg' %}" alt="" /></a>
+								<a href="#"><img src="{% static 'images/gin.jpg' %}" alt="" /></a>
 							</div>
 						</div>
 						<div>
 							<div class="image fit">
-								<a href="#"><img src="{% static 'images/pic02.jpg' %}" alt="" /></a>
+								<a href="#"><img src="{% static 'images/vodka.png' %}" alt="" /></a>
 							</div>
 						</div>
 						<div>
