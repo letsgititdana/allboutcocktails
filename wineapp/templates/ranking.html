@@ -43,34 +43,26 @@
 					<div class="box">
 					  <div class="content">
 						 <div class="12u$">
-							<div class="select-wrapper">
-							   <select name="category" id="category">
-								  <option value="">- Alcohol Base -</option>
-								  <option value="1">Whiskey</option>
-								  <option value="1">Brandy</option>
-								  <option value="1">Gin</option>
-								  <option value="1">Vodka</option>
-								  <option value="1">Tequila</option>
-								  <option value="1">Rum</option>
-								  <option value="1">Etc.</option>
-							   </select>
+
+							 <div class="select-wrapper">
+							   <form method="GET" action="{% url 'ranking' %}">
+                           		{% csrf_token %}
+								   <select name="category" id="sort-select" onchange="location = this.value;">
+									   <option value="">- Base -</option>
+									   <option class="sort-All" value="?sort=All">All</option>
+									   <option class="sort-Whiskey" value="?sort=Whiskey">Whiskey</option>
+									   <option class="sort-Brandy" value="?sort=Brandy">Brandy</option>
+									   <option class="sort-Gin" value="?sort=Gin">Gin</option>
+									   <option class="sort-Vodka" value="?sort=Vodka">Vodka</option>
+									   <option class="sort-Tequila" value="?sort=Tequila">Tequila</option>
+									   <option class="sort-Rum" value="?sort=Rum">Rum</option>
+									   <option class="sort-Etc." value="?sort=Etc.">Etc.</option>
+								   </select>
+								</form>
 							</div>
-							<div class="select-wrapper">
-							   <select name="category_Per" id="category_Per">
-								  <option value="">- Alcoholic -</option>
-								  <option value="1">Alcoholic</option>
-								  <option value="1">Non_Alcoholic</option>
-							   </select>
-							</div>
-							<div class="select-wrapper">
-							   <select name="category_Per2" id="category_Per2">
-								  <option value="">- Category -</option>
-								  <option value="1">Cocktail</option>
-								  <option value="1">Ordinary Drink</option>
-								  <option value="1">Coffee/Tea</option>
-								  <option value="1">Punch/Party Drink</option>
-							   </select>
-							</div>
+
+							 <p align="center"> or </p>
+
 							<form method="POST" action="{% url 'ranking' %}">
 								{% csrf_token %}
 								<div class="col-sm-4 firstwindow_ani">

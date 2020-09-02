@@ -84,8 +84,8 @@ def ranking(request):
         for i in reader:
             contents.append(i)
 
-    result = []
     if request.method == 'POST':
+        result = []
         search_keyword = request.POST.get('q')
         if search_keyword:
             if len(search_keyword) > 2:
@@ -98,6 +98,20 @@ def ranking(request):
             contents = result
     else:
         contents = contents
+
+    if request.method == 'GET':
+        result = []
+        categorylist = ['Gin', 'Vodka', 'Whiskey', 'Brandy', 'Tequila', 'Rum', 'Etc.']
+        sort = request.GET.get('sort', '')
+        if sort == 'All':
+            contents = contents
+        elif sort:
+            for a in categorylist:
+                if sort == a:
+                    for i in range(len(contents)):
+                        if sort in contents[i][12]:
+                            result.append(contents[i])
+            contents = result
 
     return render(request, 'ranking.html', {'data': contents})
 
