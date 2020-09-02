@@ -21,7 +21,7 @@
 					<li><a href="../index">Home</a></li>
 					<li><a href="../about">About</a></li>
 					<li><a href="../ranking"> RANKING </a></li>
-<!--					<li><a href="../recommendation"> RECOMMENDATION </a></li>-->
+					<li><a href="../recommendation"> RECOMMENDATION </a></li>
 					<li><a href="../ingredient"> INGREDIENT </a></li>
 					<li><a href="../elements">Elements</a></li>
 				</ul>
@@ -52,11 +52,7 @@
 								  <option value="1">Vodka</option>
 								  <option value="1">Tequila</option>
 								  <option value="1">Rum</option>
-								  <option value="1">Liqueur</option>
-								  <option value="1">Bourbon</option>
-								  <option value="1">Scotch</option>
-								  <option value="1">Aperol</option>
-								  <option value="1">Sweet Vermouth</option>
+								  <option value="1">Etc.</option>
 							   </select>
 							</div>
 							<div class="select-wrapper">
@@ -75,18 +71,19 @@
 								  <option value="1">Punch/Party Drink</option>
 							   </select>
 							</div>
-
-							<div class="col-sm-4 firstwindow_ani">
-							   <input type="text" name="search_text" id="search_text" class="form-control" placeholder="Name Search" value="" />
-							</div>
-						 <hr>
-							<div class="col-sm-12 align-center">
-							   <button class="btn btn-primary btncss">SEARCH</button>
-							</div>
+							<form method="POST" action="{% url 'ranking' %}">
+								{% csrf_token %}
+								<div class="col-sm-4 firstwindow_ani">
+									<input type="text" name="q" class="form-control" placeholder="Name Search"/>
+								</div>
+							 <hr>
+								<div class="col-sm-12 align-center">
+								   <button class="btn btn-primary btncss" type="submit" value="Submit" onclick="search_result">SEARCH</button>
+								</div>
+							</form>
 						 </div>
 					  </div>
 				   </div>
-
 					<div class="table-wrapper">
 						<table>
 							<tr>
@@ -97,6 +94,7 @@
 								<th> ALCOHOL </th>
 								<th> MAIN INGREDIENT </th>
 							</tr>
+							{% if data %}
 							{% for dat in data %}
 							<tr>
 								<td>{{ dat.0 }} </td>
@@ -107,6 +105,14 @@
 								<td>{{ dat.12 }}</td>
 							</tr>
 							{% endfor %}
+
+							{% else %}
+                     			<tr class="text-center">
+									<td colspan="7" style="text-align:center">
+										일치하는 검색 결과가 없습니다.
+									</td>
+								</tr>
+							{% endif %}
 						</table>
 					</div>
 
@@ -135,6 +141,7 @@
 			<script type="text/javascript" src="{% static 'assets/js/skel.min.js' %}"></script>
 			<script type="text/javascript" src="{% static 'assets/js/util.js' %}"></script>
 			<script type="text/javascript" src="{% static 'assets/js/main.js' %}"></script>
+
 
 	</body>
 </html>

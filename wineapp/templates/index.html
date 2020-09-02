@@ -15,6 +15,7 @@
 
 		</script>
 		-->
+
 	</head>
 
 	<body>
@@ -173,30 +174,47 @@
 			<section id="three" class="wrapper style2">
 				<div class="inner">
 					<header class="align-center">
-						<p class="special">Nam vel ante sit amet libero scelerisque facilisis eleifend vitae urna</p>
+						<p class="special">Amet libero scelerisque facilisis eleifend vitae urna</p>
 						<h2> Popular Cocktail Ingredients </h2>
 					</header>
+
 					<div class="gallery">
 						<div>
 							<div class="image fit">
-								<a href="#"><img src="{% static 'images/gin.jpg' %}" alt="" /></a>
+								<a href="../ingredient">
+									<div class="content-overlay"></div>
+									<img class="content-image" src="{% static 'images/gin.jpg' %}" alt="" />
+									<div class="content-details fadeIn-top">
+										<h3> GIN </h3>
+									</div>
+								</a>
 							</div>
 						</div>
+
 						<div>
 							<div class="image fit">
-								<a href="#"><img src="{% static 'images/vodka.png' %}" alt="" /></a>
+								<a href="../ingredient">
+									<div class="content-overlay"></div>
+									<img class="content-image" src="{% static 'images/vodka.png' %}" alt="" />
+									<div class="content-details fadeIn-top">
+										<h3> VODKA </h3>
+									</div>
+								</a>
 							</div>
 						</div>
+
 						<div>
 							<div class="image fit">
 								<a href="#"><img src="{% static 'images/pic03.jpg' %}" alt="" /></a>
 							</div>
 						</div>
+
 						<div>
 							<div class="image fit">
 								<a href="#"><img src="{% static 'images/pic04.jpg' %}" alt="" /></a>
 							</div>
 						</div>
+
 					</div>
 				</div>
 			</section>

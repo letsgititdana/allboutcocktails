@@ -79,13 +79,28 @@ def elements(request):
 
 def ranking(request):
     contents = []
-
-    with open('/Users/Dana/allboutcocktails/wineapp/static/cocktail2020.csv', mode='r') as cocktail_lists:
+    with open('/Users/Dana/allboutcocktails/wineapp/static/cocktail2020.csv', mode = 'r') as cocktail_lists:
         reader = csv.reader(cocktail_lists)
         for i in reader:
             contents.append(i)
 
+    result = []
+    if request.method == 'POST':
+        search_keyword = request.POST.get('q')
+        if search_keyword:
+            if len(search_keyword) > 2:
+                search_keyword = (search_keyword.lower()).replace(" ", "")
+                for row in contents:
+                    cocktail_name = (row[2].lower()).replace(" ", "")
+                    if search_keyword in cocktail_name:
+                        result.append(row)
+
+            contents = result
+    else:
+        contents = contents
+
     return render(request, 'ranking.html', {'data': contents})
+
 
 def recommendation(request):
     return render(request,'recommendation.html')
