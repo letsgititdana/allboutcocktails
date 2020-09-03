@@ -2,11 +2,10 @@
 
 <html>
 	<head>
-		<title>All aBout Cocktails</title>
+		<title>All 'Bout Cocktails</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link type="text/css" rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	</head>
 	<body class="subpage">
 
@@ -27,6 +26,7 @@
 					<span><a href="{%url 'login' %}">Login</a> or </span> <br>
 					<span><a href="{%url 'register' %}">Register</a> if you are new </span> <br> <br> <br>
 				{% endif %}
+
 				<ul class="links">
 					<li><a href="../index">Home</a></li>
 					<li><a href="../about">About</a></li>
@@ -41,83 +41,67 @@
 			<section id="One" class="wrapper style3">
 				<div class="inner">
 					<header class="align-center">
-						<p>Eleifend vitae urna</p>
-						<h2> Ingredients </h2>
+						<p>All 'Bout Cocktails</p>
+						<h2> Ingredient Detail </h2>
 					</header>
 				</div>
 			</section>
 
+
 		<!-- Two -->
-			<section id="two" class="wrapper style4">
+			<section id="two" class="wrapper style2">
 				<div class="inner">
 					<div class="box">
 						<div class="content">
-							<div class="12u$">
-								<form class="form-inline justify-content-center" method="POST" action="{% url 'ingredient' %}">
-									{% csrf_token %}
-									<div class="form-group row">
-										Search an ingredient > &nbsp&nbsp
-										<input class="form-control" type="text" name="q" placeholder="Search by Name">
-										<button class="btn btn-light" type="submit" value="Search" onclick="search_result"> Go </button>
-									</div>
-								</form>
 
-								<div class="gallery">
-									<div>
-										<div class="image fit">
-											<a href="../ingredient_detail">
-												<div class="content-overlay"></div>
-												<img class="content-image" src="{% static 'images/gin.jpg' %}" alt="" />
-												<div class="content-details fadeIn-top">
-													<h3> GIN </h3>
-												</div>
-											</a>
+
+							<header class="align-center">
+								<p> Cocktail Information </p>
+								<h2> {{ ingredientname }} </h2>
+							</header>
+
+
+								<!-- Elements -->
+									<div class="row 200%">
+
+										<div class="6u 12u$(medium)">
+											<img src="{{ ingredientimage }}" style="width:100%;"/>
 										</div>
-									</div>
 
-									<div>
-										<div class="image fit">
-											<a href="../ingredient_detail">
-												<div class="content-overlay"></div>
-												<img class="content-image" src="{% static 'images/vodka.png' %}" alt="" />
-												<div class="content-details fadeIn-top">
-													<h3> VODKA </h3>
-												</div>
-											</a>
+										<div class="6u$ 12u$(medium)">
+											<h3> {{individualname}} </h3>
+											<dl>
+											<dt style="color:#212224;"> Description </dt>
+												<dd><p> {{ ingredientDescription }} </p></dd>
+											<dt style="color:#212224;"> Type </dt>
+												<dd><p> {{ ingredienttype }} </p></dd>
+											<dt style="color:#212224;"> Alcohol </dt>
+												<dd><p> {{ ingredientabv }} </p></dd>
+											</dl>
 										</div>
+
+									</div>
+									<br> <br>
+									<div class="table-wrapper">
+										<table>
+											<tr>
+												<th> IMAGE </th>
+												<th> NAME </th>
+											</tr>
+											{% for i in tempList %}
+											<tr>
+												<td><img src="{{ i.strDrinkThumb }}" width="80"></td>
+												<td>{{ i.strDrink }} </td>
+											</tr>
+											{% endfor %}
+										</table>
 									</div>
 
-									<div>
-										<div class="image fit">
-											<a href="../ingredient_detail">
-												<div class="content-overlay"></div>
-												<img class="content-image" src="{% static 'images/whiskey.jpg' %}" alt="" />
-												<div class="content-details fadeIn-top">
-													<h3> WHISKEY </h3>
-												</div>
-											</a>
-										</div>
-									</div>
 
-									<div>
-										<div class="image fit">
-											<a href="../ingredient_detail">
-												<div class="content-overlay"></div>
-												<img class="content-image" src="{% static 'images/rum.jpg' %}" alt="" />
-												<div class="content-details fadeIn-top">
-													<h3> RUM </h3>
-												</div>
-											</a>
-										</div>
-									</div>
-								</div>
-
-							</div>
 						</div>
 					</div>
 				</div>
 			</section>
-
 
 		<!-- Footer -->
 			<footer id="footer">
@@ -140,5 +124,6 @@
 			<script type="text/javascript" src="{% static 'assets/js/skel.min.js' %}"></script>
 			<script type="text/javascript" src="{% static 'assets/js/util.js' %}"></script>
 			<script type="text/javascript" src="{% static 'assets/js/main.js' %}"></script>
+
 	</body>
 </html>
