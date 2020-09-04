@@ -13,7 +13,9 @@ from .forms import *
 import wikipedia
 import requests
 import json
-
+from django.urls import resolve
+from .models import Post
+from bs4 import BeautifulSoup
 
 # Create your views here.
 
@@ -49,11 +51,11 @@ def index(request):
             else:
                 pass
 
-    with open('/Users/Dana/allboutcocktails/wineapp/static/koreancocktails1.csv', mode='r', encoding='ISO-8859-1') as k_cocktail:
-        reader = csv.reader(k_cocktail)
-        kcocktail_list = []
-        for i in reader:
-            kcocktail_list.append(i)
+    #with open('/Users/Dana/allboutcocktails/wineapp/static/koreancocktails1.csv', mode='r', encoding='ISO-8859-1') as k_cocktail:
+    #    reader = csv.reader(k_cocktail)
+    #    kcocktail_list = []
+    #    for i in reader:
+    #        kcocktail_list.append(i)
 
     contents = {}
     contents['cocktailofday'] = cocktailname
@@ -62,7 +64,7 @@ def index(request):
     contents['cocktailofdayinstruction'] = cocktailinstruction
     contents['cocktailofdayingredients'] = ingredient_list
     #contents['ingredient1description'] = ingredient1description
-    contents['monthlycocktail'] = kcocktail_list[8]
+    #contents['monthlycocktail'] = kcocktail_list[8]
 
     return render(request,'index.html', contents)
 
@@ -73,9 +75,20 @@ def individual(request):
     individualcontents['individualcategory'] = cocktailcategory
     individualcontents['individualinstruction'] = cocktailinstruction
 
+    if request.method == 'POST':
+        item = []
+        item.append(cocktailname)
+        item.append(cocktailpic)
+        item.append(cocktailcategory)
+        item.append(cocktailinstruction)
+        item.append("https://www.thecocktaildb.com/api/json/v1/1/search.php?s="+str(cocktailname.replace(" ", "_")))
+
+        Post(cocktailName=item[0], cocktailPic=item[1], cocktailAPI=item[4], cocktailCategory=item[2], cocktailInst=item[3], user=request.user).save()
+
     return render(request, 'individual.html', individualcontents)
 
 def generic(request):
+
     return render(request,'generic.html')
 
 def elements(request):
@@ -121,6 +134,7 @@ def ranking(request):
 
 
 def recommendation(request):
+
     return render(request,'recommendation.html')
 
 
@@ -141,8 +155,9 @@ def get_wiki_image(search_term):
 
 def ingredient(request):
     contents = {}
-    if request.method == 'POST':
-        search_keyword = request.POST.get('q')
+
+    search_keyword = request.GET.get('q', '')
+    if search_keyword != '':
         search_keyword = search_keyword.replace(" ", "_")
 
         with urllib.request.urlopen('https://www.thecocktaildb.com/api/json/v1/1/search.php?i='+search_keyword, context=ssl.create_default_context(cafile=certifi.where())) as response:
@@ -174,15 +189,21 @@ def ingredient(request):
     return render(request,'ingredient.html', contents)
 
 def ingredient_detail(request):
-
     return render(request,'ingredient_detail.html')
 
+
 def about(request):
+    #Post.objects.filter(user_id=12).delete()
     return render(request,'about.html')
 
 @login_required(login_url='login')
 def mypage(request):
-    return render(request,'mypage.html')
+
+    if request.user.is_authenticated:
+        posts = Post.objects.filter(user=request.user)
+
+    return render(request,'mypage.html', {'posts': posts})
+
 
 def register(request):
     if request.user.is_authenticated:

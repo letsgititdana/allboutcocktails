@@ -61,7 +61,6 @@
 							</header>
 
 
-
 								<!-- Elements -->
 									<div class="row 200%">
 
@@ -80,12 +79,14 @@
 												<dd><p> {{individualinstruction}} </p></dd>
 											</dl>
 											<br>
-											<a href="#" class="button special" style="float: right;"> Save </a>
+
+											<form method="POST">
+            								{% csrf_token %}
+												<button type="submit" class="button special" style="float: right;"> Save </button>
+											</form>
+
 										</div>
-
 									</div>
-
-
 						</div>
 					</div>
 				</div>

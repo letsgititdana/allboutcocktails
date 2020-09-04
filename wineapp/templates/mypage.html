@@ -26,6 +26,7 @@
 					<span><a href="{%url 'login' %}">Login</a> or </span> <br>
 					<span><a href="{%url 'register' %}">Register</a> if you are new </span> <br> <br> <br>
 				{% endif %}
+
 				<ul class="links">
 					<li><a href="../index">Home</a></li>
 					<li><a href="../about">About</a></li>
@@ -54,10 +55,21 @@
 						<div class="content">
 							<header class="align-center">
 								<p> my page </p>
-								<h2> current user: {{request.user}}</h2>
+								<h2> {{request.user}}'s Wishlist</h2>
 							</header>
 
-
+							<div class="box alt">
+								<div class="row 50% uniform">
+									{% for post in posts %}
+									<div class="4u"> <span class="image fit">
+										<h3>{{ post.cocktailName }}</h3>
+										<a href="{{ post.cocktailAPI }}"> <img src="{{ post.cocktailPic }}"> </a>
+										</span>
+										<br>
+									</div>
+									{% endfor %}
+								</div>
+							</div>
 
 							</div>
 					</div>

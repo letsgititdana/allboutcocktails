@@ -17,11 +17,21 @@
 
 		<!-- Nav -->
 			<nav id="menu">
+				{% if user.is_authenticated %}
+					<span style="color:white; font-size:20px">Hello, {{request.user}} !</span> <br>
+					<span><a href="{% url 'mypage' %}">My Page</a></span><br>
+					<span><a href="{% url 'logout' %}">Logout</a><br><br><br></span>
+				{% else %}
+					<span style="color:white; font-size:20px">Hello, Stranger !</span> <br>
+					<span><a href="{%url 'login' %}">Login</a> or </span> <br>
+					<span><a href="{%url 'register' %}">Register</a> if you are new </span> <br> <br> <br>
+				{% endif %}
+
 				<ul class="links">
 					<li><a href="../index">Home</a></li>
 					<li><a href="../about">About</a></li>
 					<li><a href="../ranking"> RANKING </a></li>
-					<li><a href="../recommendation"> RECOMMENDATION </a></li>
+<!--					<li><a href="../recommendation"> RECOMMENDATION </a></li>-->
 					<li><a href="../ingredient"> INGREDIENT </a></li>
 					<li><a href="../elements">Elements</a></li>
 				</ul>
@@ -47,16 +57,16 @@
 							 <div class="select-wrapper">
 							   <form method="GET" action="{% url 'ranking' %}">
                            		{% csrf_token %}
-								   <select name="category" id="sort-select" onchange="location = this.value;">
+								   <select name="sort" onchange="location = this.value;">
 									   <option value="">- Base -</option>
-									   <option class="sort-All" value="?sort=All">All</option>
-									   <option class="sort-Whiskey" value="?sort=Whiskey">Whiskey</option>
-									   <option class="sort-Brandy" value="?sort=Brandy">Brandy</option>
-									   <option class="sort-Gin" value="?sort=Gin">Gin</option>
-									   <option class="sort-Vodka" value="?sort=Vodka">Vodka</option>
-									   <option class="sort-Tequila" value="?sort=Tequila">Tequila</option>
-									   <option class="sort-Rum" value="?sort=Rum">Rum</option>
-									   <option class="sort-Etc." value="?sort=Etc.">Etc.</option>
+									   <option value="?sort=All">All</option>
+									   <option value="?sort=Whiskey">Whiskey</option>
+									   <option value="?sort=Brandy">Brandy</option>
+									   <option value="?sort=Gin">Gin</option>
+									   <option value="?sort=Vodka">Vodka</option>
+									   <option value="?sort=Tequila">Tequila</option>
+									   <option value="?sort=Rum">Rum</option>
+									   <option value="?sort=Etc.">Etc.</option>
 								   </select>
 								</form>
 							</div>
@@ -66,7 +76,7 @@
 							<form method="POST" action="{% url 'ranking' %}">
 								{% csrf_token %}
 								<div class="col-sm-4 firstwindow_ani">
-									<input type="text" name="q" class="form-control" placeholder="Name Search"/>
+									<input type="text" name="q" class="form-control" placeholder="Search by Name"/>
 								</div>
 							 <hr>
 								<div class="col-sm-12 align-center">

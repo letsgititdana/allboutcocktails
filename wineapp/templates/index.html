@@ -44,7 +44,7 @@
 					<li><a href="../ranking"> RANKING </a></li>
 <!--					<li><a href="../recommendation"> RECOMMENDATION </a></li>-->
 					<li><a href="../ingredient"> INGREDIENT </a></li>
-					<li><a href="../elements">Elements</a></li>
+					<li><a href="../mypage">Wishlist</a></li>
 				</ul>
 			</nav>
 
@@ -64,7 +64,7 @@
 					<div class="inner">
 						<header>
 							<p>World's Best-Selling Classic Cocktails 2020 </p>
-							<h2> Cocktail Ranking </h2>
+							<h2> Classics Ranking </h2>
 							<button onclick="location.href='../ranking'" type="button"> See Details </button>
 						</header>
 					</div>
@@ -85,8 +85,8 @@
 					<img src="{% static 'images/wine4.jpg' %}"  alt="" />
 					<div class="inner">
 						<header>
-							<p> Select ingredients you already have </p>
-							<h2> Make Your Own </h2>
+							<p> Type ingredients to see what cocktails you can make! </p>
+							<h2> Ingredients </h2>
 							<button onclick="location.href='../ingredient'" type="button"> See Details </button>
 						</header>
 					</div>
@@ -95,7 +95,7 @@
 					<img src="{% static 'images/wine5.jpg' %}"  alt="" />
 					<div class="inner">
 						<header>
-							<p> Discover the developers </p>
+							<p> Discover the developers of All 'Bout Cocktails </p>
 							<h2> Who Are we? </h2>
 							<button onclick="location.href='../about'" type="button"> See Details </button>
 						</header>
@@ -181,7 +181,7 @@
 					<div class="gallery">
 						<div>
 							<div class="image fit">
-								<a href="../ingredient_detail">
+								<a href="../ingredient/?q=gin">
 									<div class="content-overlay"></div>
 									<img class="content-image" src="{% static 'images/gin.jpg' %}" alt="" />
 									<div class="content-details fadeIn-top">
@@ -193,7 +193,7 @@
 
 						<div>
 							<div class="image fit">
-								<a href="../ingredient_detail">
+								<a href="../ingredient/?q=vodka">
 									<div class="content-overlay"></div>
 									<img class="content-image" src="{% static 'images/vodka.png' %}" alt="" />
 									<div class="content-details fadeIn-top">
@@ -205,7 +205,7 @@
 
 						<div>
 							<div class="image fit">
-								<a href="../ingredient_detail">
+								<a href="../ingredient/?q=whiskey">
 									<div class="content-overlay"></div>
 									<img class="content-image" src="{% static 'images/whiskey.jpg' %}" alt="" />
 									<div class="content-details fadeIn-top">
@@ -217,7 +217,7 @@
 
 						<div>
 							<div class="image fit">
-								<a href="../ingredient_detail">
+								<a href="../ingredient/?q=rum">
 									<div class="content-overlay"></div>
 									<img class="content-image" src="{% static 'images/rum.jpg' %}" alt="" />
 									<div class="content-details fadeIn-top">

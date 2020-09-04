@@ -15,4 +15,8 @@ urlpatterns = [
     path('mypage/', views.mypage, name='mypage'),
     path('individual/', views.individual, name='individual'),
     path('ingredient_detail/', views.ingredient_detail, name='ingredient_detail'),
+    #path('ingredient_detail/gin/', views.gin, name='gin'),
+    #path('ingredient_detail/vodka/', views.vodka, name='vokda'),
+    #path('ingredient_detail/whiskey/', views.whiskey, name='whiskey'),
+    #path('ingredient_detail/rum/', views.rum, name='rum'),
 ]

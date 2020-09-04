@@ -27,6 +27,7 @@
 					<span><a href="{%url 'login' %}">Login</a> or </span> <br>
 					<span><a href="{%url 'register' %}">Register</a> if you are new </span> <br> <br> <br>
 				{% endif %}
+
 				<ul class="links">
 					<li><a href="../index">Home</a></li>
 					<li><a href="../about">About</a></li>
@@ -53,7 +54,7 @@
 					<div class="box">
 						<div class="content">
 							<div class="12u$">
-								<form class="form-inline justify-content-center" method="POST" action="{% url 'ingredient' %}">
+								<form class="form-inline justify-content-center" method="GET" action="{% url 'ingredient' %}">
 									{% csrf_token %}
 									<div class="form-group row">
 										Search an ingredient > &nbsp&nbsp
