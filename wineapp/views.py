@@ -27,6 +27,7 @@ def index(request):
         global cocktailinstruction
         global cocktailpic
         global cocktailid
+        global ingredient_matching
         cocktailname = data.get('drinks')[0].get('strDrink')
         cocktailcategory = data.get('drinks')[0].get('strCategory')
         cocktailinstruction = data.get('drinks')[0].get('strInstructions')
@@ -45,11 +46,22 @@ def index(request):
 
         ingredient_list = []
         for i in range(1, 15):
-            element = data.get('drinks')[0].get('strIngredient'+str(i))
+            element = data.get('drinks')[0].get('strIngredient' + str(i))
             if not (element is None):
                 ingredient_list.append(element)
             else:
                 pass
+        measure_list = []
+        for i in range(1, 15):
+            element = data.get('drinks')[0].get('strMeasure' + str(i))
+            if not (element is None):
+                measure_list.append(element)
+            else:
+                pass
+
+        ingredient_matching = []
+        for i in range(len(ingredient_list)):
+            ingredient_matching.append([ingredient_list[i], measure_list[i]])
 
     #with open('/Users/Dana/allboutcocktails/wineapp/static/koreancocktails1.csv', mode='r', encoding='ISO-8859-1') as k_cocktail:
     #    reader = csv.reader(k_cocktail)
@@ -74,6 +86,7 @@ def individual(request):
     individualcontents['individualimage'] = cocktailpic
     individualcontents['individualcategory'] = cocktailcategory
     individualcontents['individualinstruction'] = cocktailinstruction
+    individualcontents['individualingredient'] = ingredient_matching
 
     if request.method == 'POST':
         item = []
@@ -96,7 +109,7 @@ def elements(request):
 
 def ranking(request):
     contents = []
-    with open('/Users/Dana/allboutcocktails/wineapp/static/cocktail2020.csv', mode = 'r') as cocktail_lists:
+    with open('/mari/allboutcocktails/wineapp/static/cocktail2020.csv', mode = 'r') as cocktail_lists:
         reader = csv.reader(cocktail_lists)
         for i in reader:
             contents.append(i)
