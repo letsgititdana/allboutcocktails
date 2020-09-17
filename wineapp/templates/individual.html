@@ -83,12 +83,14 @@
 												<dd><p> {{individualinstruction}} </p></dd>
 											</dl>
 											<br>
-
-											<form method="POST">
-            								{% csrf_token %}
-												<button type="submit" class="button special" style="float: right;"> Save </button>
-											</form>
-
+											{% if user.is_authenticated %}
+												<form method="POST">
+            									{% csrf_token %}
+													<button type="submit" class="button special" style="float: right;"> Save </button>
+												</form>
+											{% else %}
+											<a href="{%url 'login' %}" button type="submit" class="button special" style="float: right;"> Save </button></a>
+											{% endif %}
 										</div>
 									</div>
 						</div>

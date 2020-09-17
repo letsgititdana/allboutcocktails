@@ -122,9 +122,7 @@
 									<h3> Name: {{ cocktailofday }} </h3> <br>
 									<h4>
 										Category: {{ cocktailofdaycategory }} <br>
-										Ingredients: {% for i in cocktailofdayingredients %}
-														{{ i }},
-													{% endfor %}
+										Ingredients: {{ cocktailofdayingredients|join:", " }}
 										<br> <br>
 									</h4>
 

@@ -109,7 +109,7 @@ def elements(request):
 
 def ranking(request):
     contents = []
-    with open('/mari/allboutcocktails/wineapp/static/cocktail2020.csv', mode = 'r') as cocktail_lists:
+    with open('../allboutcocktails/wineapp/static/cocktail2020.csv', mode = 'r') as cocktail_lists:
         reader = csv.reader(cocktail_lists)
         for i in reader:
             contents.append(i)
