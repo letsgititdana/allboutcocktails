@@ -2,20 +2,15 @@ import csv
 import urllib
 import certifi
 import ssl
-import pandas as pd
-from django.contrib.staticfiles.storage import staticfiles_storage
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-import json
 from .forms import *
 import wikipedia
 import requests
 import json
-from django.urls import resolve
 from .models import Post
-from bs4 import BeautifulSoup
 
 # Create your views here.
 
