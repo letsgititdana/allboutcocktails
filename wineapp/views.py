@@ -1,3 +1,4 @@
+import os
 import csv
 import urllib
 import certifi
@@ -104,7 +105,9 @@ def elements(request):
 
 def ranking(request):
     contents = []
-    with open('../allboutcocktails/wineapp/static/cocktail2020.csv', mode = 'r') as cocktail_lists:
+    module_dir = os.path.abspath(os.path.dirname(__file__))
+    file_path = os.path.join(module_dir, 'static/cocktail2020.csv')
+    with open(file_path, mode = 'r') as cocktail_lists:
         reader = csv.reader(cocktail_lists)
         for i in reader:
             contents.append(i)
